@@ -12,7 +12,7 @@ Bien que *Reddit* ne soit pas aussi important que *Facebook* ou *Instagram*, c'e
 ## Choix du langage
 Pour pouvoir développer sur *Android*, nous utiliserons le langage **Java** avec *Android Studio*.
 
-## Travaux avec les autres PUR
+## Travaux avec les autres PIR
 ### (Stégano) Templates et exemples de posts
 Nous fournirons un script permettant de parser un subreddit, sortie au format CSV.
 
