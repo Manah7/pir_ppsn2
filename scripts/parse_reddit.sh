@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#TODO:
+#title
+#content
+#link_flair_richtext
+#author
+#subreddit
+
 if [ "$#" -ne 2 ]; then
 	echo "Deux arguments attendus : $0 [subreddit] [nb_posts]"
 	echo "Exemple : $0 all 10"
