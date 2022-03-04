@@ -1,7 +1,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/Manah7/pir_ppsn2">
-    <img src="img/Cipherdit.png" alt="Logo" width="500">
+    <img src="img/Cipherdit_light.png" alt="Logo" width="700">
   </a>
 
 
