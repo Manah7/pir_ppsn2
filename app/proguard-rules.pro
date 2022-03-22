@@ -1,16 +1,16 @@
 -dontobfuscate
 
--keepclassmembers class * extends org.quantumbadger.redreader.io.WritableObject {
+-keepclassmembers class * extends org.insa.cipherdit.io.WritableObject {
 	*;
 }
 
--keepclassmembers class * extends org.quantumbadger.redreader.jsonwrap.JsonObject$JsonDeserializable {
+-keepclassmembers class * extends org.insa.cipherdit.jsonwrap.JsonObject$JsonDeserializable {
 	*;
 }
 
--keepclassmembers class org.quantumbadger.redreader.R { *; }
--keepclassmembers class org.quantumbadger.redreader.R$xml {	*; }
--keepclassmembers class org.quantumbadger.redreader.R$string {	*; }
+-keepclassmembers class org.insa.cipherdit.R { *; }
+-keepclassmembers class org.insa.cipherdit.R$xml {	*; }
+-keepclassmembers class org.insa.cipherdit.R$string {	*; }
 
 -keepclassmembers class com.github.luben.zstd.* {
 	*;

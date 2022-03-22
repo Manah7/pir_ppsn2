@@ -19,7 +19,7 @@
 <manifest
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		xmlns:tools="http://schemas.android.com/tools"
-		package="org.quantumbadger.redreader"
+		package="org.insa.cipherdit"
 		android:installLocation="auto">
 
     <uses-feature android:glEsVersion="0x00020000" android:required="true" />
@@ -38,7 +38,7 @@
 		</intent>
 	</queries>
 
-    <application android:name="org.quantumbadger.redreader.RedReader"
+    <application android:name="org.insa.cipherdit.Cipherdit"
                  android:icon="@mipmap/icon"
                  android:label="@string/app_name"
                  android:theme="@style/RR.Startup"
@@ -55,7 +55,7 @@
 
 		<meta-data android:name="android.webkit.WebView.MetricsOptOut" android:value="true" />
 
-		<activity android:name=".activities.MainActivity"
+		<activity android:name="org.insa.cipherdit.activities.MainActivity"
 				  android:configChanges="orientation|screenSize|keyboardHidden"
 				  android:clearTaskOnLaunch="false"
 				  android:finishOnTaskLaunch="false"
@@ -70,10 +70,10 @@
 
         </activity>
 
-        <activity android:name=".settings.SettingsActivity"
+        <activity android:name="org.insa.cipherdit.settings.SettingsActivity"
                   android:configChanges="orientation|screenSize|keyboardHidden" />
 
-        <activity android:name=".activities.LinkDispatchActivity"
+        <activity android:name="org.insa.cipherdit.activities.LinkDispatchActivity"
 				  android:exported="true">
 
             <intent-filter>
@@ -178,51 +178,51 @@
 
         </activity>
 
-		<activity android:name=".activities.RefreshableActivity"
+		<activity android:name="org.insa.cipherdit.activities.RefreshableActivity"
 				  android:configChanges="orientation|screenSize"/>
 
-        <activity android:name=".activities.PostListingActivity"
+        <activity android:name="org.insa.cipherdit.activities.PostListingActivity"
 				  android:configChanges="orientation|screenSize|keyboardHidden" />
 
-        <activity android:name=".activities.CommentListingActivity"
+        <activity android:name="org.insa.cipherdit.activities.CommentListingActivity"
 				  android:configChanges="orientation|screenSize|keyboardHidden" />
 
-		<activity android:name=".activities.ChangelogActivity"
+		<activity android:name="org.insa.cipherdit.activities.ChangelogActivity"
 				  android:configChanges="orientation|screenSize|keyboardHidden" />
 
-		<activity android:name=".activities.ImgurUploadActivity"
+		<activity android:name="org.insa.cipherdit.activities.ImgurUploadActivity"
 				  android:configChanges="orientation|screenSize|keyboardHidden" />
 
-		<activity android:name=".activities.MoreCommentsListingActivity"
+		<activity android:name="org.insa.cipherdit.activities.MoreCommentsListingActivity"
 				  android:configChanges="orientation|screenSize|keyboardHidden" />
 
-        <activity android:name=".activities.WebViewActivity"
+        <activity android:name="org.insa.cipherdit.activities.WebViewActivity"
                   android:configChanges="orientation|screenSize|keyboardHidden"
                   android:theme="@style/RR.Dark"/>
 
-        <activity android:name=".activities.HtmlViewActivity"
+        <activity android:name="org.insa.cipherdit.activities.HtmlViewActivity"
                   android:configChanges="orientation|screenSize|keyboardHidden"/>
 
-        <activity android:name=".activities.OAuthLoginActivity"
+        <activity android:name="org.insa.cipherdit.activities.OAuthLoginActivity"
                   android:configChanges="orientation|screenSize|keyboardHidden"/>
 
-        <activity android:name=".activities.AlbumListingActivity"
+        <activity android:name="org.insa.cipherdit.activities.AlbumListingActivity"
                   android:configChanges="orientation|screenSize|keyboardHidden"/>
 
-        <activity android:name=".activities.ImageViewActivity"
+        <activity android:name="org.insa.cipherdit.activities.ImageViewActivity"
                   android:configChanges="orientation|screenSize|keyboardHidden"
                   android:theme="@style/RR.Dark"/>
 
-        <activity android:name=".activities.CommentReplyActivity"
+        <activity android:name="org.insa.cipherdit.activities.CommentReplyActivity"
                   android:configChanges="orientation|screenSize|keyboardHidden"/>
 
-        <activity android:name=".activities.CommentEditActivity"
+        <activity android:name="org.insa.cipherdit.activities.CommentEditActivity"
                   android:configChanges="orientation|screenSize|keyboardHidden"/>
 
-		<activity android:name=".activities.PMSendActivity"
+		<activity android:name="org.insa.cipherdit.activities.PMSendActivity"
 				  android:configChanges="orientation|screenSize|keyboardHidden"/>
 
-        <activity android:name=".activities.PostSubmitActivity"
+        <activity android:name="org.insa.cipherdit.activities.PostSubmitActivity"
 				  android:configChanges="orientation|screenSize|keyboardHidden"
 				  android:exported="true">
             <intent-filter>
@@ -232,22 +232,22 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.BugReportActivity"
+        <activity android:name="org.insa.cipherdit.activities.BugReportActivity"
                   android:configChanges="orientation|screenSize|keyboardHidden"
                   android:launchMode="singleInstance"/>
 
-        <activity android:name=".activities.InboxListingActivity"
+        <activity android:name="org.insa.cipherdit.activities.InboxListingActivity"
                   android:configChanges="orientation|screenSize|keyboardHidden"/>
 
-		<activity android:name=".activities.SubredditSearchActivity"
+		<activity android:name="org.insa.cipherdit.activities.SubredditSearchActivity"
 				  android:configChanges="orientation|screenSize|keyboardHidden"
 				  android:windowSoftInputMode="adjustResize"/>
 
-        <receiver android:name=".receivers.NewMessageChecker"/>
+        <receiver android:name="org.insa.cipherdit.receivers.NewMessageChecker"/>
 
-        <receiver android:name=".receivers.RegularCachePruner"/>
+        <receiver android:name="org.insa.cipherdit.receivers.RegularCachePruner"/>
 
-        <receiver android:name=".receivers.BootReceiver"
+        <receiver android:name="org.insa.cipherdit.receivers.BootReceiver"
 				  android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
@@ -263,8 +263,8 @@
         <meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H" android:resource="@dimen/app_minimumsize_h" />
 
 		<provider
-				android:name="org.quantumbadger.redreader.cache.CacheContentProvider"
-				android:authorities="org.quantumbadger.redreader.cacheprovider"
+				android:name="org.insa.cipherdit.cache.CacheContentProvider"
+				android:authorities="org.insa.cipherdit.cacheprovider"
 				android:exported="false"
 				android:grantUriPermissions="true" />
     </application>

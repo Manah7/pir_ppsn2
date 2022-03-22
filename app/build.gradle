@@ -50,7 +50,7 @@ android {
 	ndkVersion "23.1.7779620"
 
 	defaultConfig {
-		applicationId "org.quantumbadger.redreader"
+		applicationId "org.insa.cipherdit"
 		minSdkVersion 16
 		targetSdkVersion 30
 		versionCode 102

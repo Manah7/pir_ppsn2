@@ -24,7 +24,7 @@
 		android:layout_height="match_parent"
 		android:focusableInTouchMode="true">
 
-	<org.quantumbadger.redreader.views.LoadingSpinnerView
+	<org.insa.cipherdit.views.LoadingSpinnerView
 			android:id="@+id/post_submit_loading_spinner_view"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent" />
