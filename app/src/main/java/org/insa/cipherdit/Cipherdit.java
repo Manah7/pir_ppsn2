@@ -36,7 +36,7 @@ public class Cipherdit extends Application {
 
 		super.onCreate();
 
-		Log.i("RedReader", "Application created.");
+		Log.i("Cipherdit", "Application created.");
 
 		GlobalExceptionHandler.init(this);
 

@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ This file is part of RedReader.
+  ~ This file is part of Cipherdit.
   ~
-  ~ RedReader is free software: you can redistribute it and/or modify
+  ~ Cipherdit is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
   ~ the Free Software Foundation, either version 3 of the License, or
   ~ (at your option) any later version.
   ~
-  ~ RedReader is distributed in the hope that it will be useful,
+  ~ Cipherdit is distributed in the hope that it will be useful,
   ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
   ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   ~ GNU General Public License for more details.
   ~
   ~ You should have received a copy of the GNU General Public License
-  ~ along with RedReader.  If not, see <http://www.gnu.org/licenses/>.
+  ~ along with Cipherdit.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
 <resources>
 
-    <string name="app_name" translatable="false">RedReader</string>
+    <string name="app_name" translatable="false">Cipherdit</string>
 
     <!-- First Run Dialog -->
 
@@ -281,7 +281,7 @@
     <!-- Bug Reporting -->
 
     <string name="bug_title">An error has occurred.</string>
-    <string name="bug_message">RedReader has encountered an error.\n\nWould you like to send a bug report to the developer? If so, an email will be filled in for you with all the relevant information, and you can inspect the contents before sending.</string>
+    <string name="bug_message">Cipherdit has encountered an error.\n\nWould you like to send a bug report to the developer? If so, an email will be filled in for you with all the relevant information, and you can inspect the contents before sending.</string>
     <string name="bug_button_send">Send bug report by email</string>
     <string name="bug_button_ignore">Don\'t send bug report</string>
 
@@ -672,7 +672,7 @@
     <string name="album_already_first_image">Already at first image in album.</string>
     <string name="album_already_last_image">Already at last image in album.</string>
 
-    <string name="upgrade_v190_login_message">RedReader has upgraded, and now uses OAuth for Reddit authentication. If you were signed in to an account before the upgrade, you are now logged out.</string>
+    <string name="upgrade_v190_login_message">Cipherdit has upgraded, and now uses OAuth for Reddit authentication. If you were signed in to an account before the upgrade, you are now logged out.</string>
 
     <string name="pref_behaviour_videoview_mode_title">Video viewer</string>
     <string name="pref_behaviour_videoview_mode_key" translatable="false">pref_behaviour_videoview_mode</string>
@@ -1273,7 +1273,7 @@
 
 	<!-- 2020-09-04 -->
 	<string name="reddit_login_browser_popup_line_1">To log in, you will now be taken to Reddit in a web browser.</string>
-	<string name="reddit_login_browser_popup_line_2">When the login is complete, you should be redirected back to RedReader. If the login fails, you can try a different browser using the checkbox below.</string>
+	<string name="reddit_login_browser_popup_line_2">When the login is complete, you should be redirected back to Cipherdit. If the login fails, you can try a different browser using the checkbox below.</string>
 
 	<string name="reddit_login_browser_popup_use_internal_browser">Use internal browser (recommended)</string>
 	<string name="reddit_login_browser_popup_use_external_browser">Use external browser (recommended)</string>
@@ -1504,11 +1504,11 @@
 
 	<string name="restore_preferences_error_invalid_file_title">Invalid file</string>
 	<string name="restore_preferences_error_invalid_file_contents_message">The selected file is not a valid preference backup file.</string>
-	<string name="restore_preferences_error_invalid_file_version_message">The selected file was created by a newer version of RedReader and cannot be opened.</string>
+	<string name="restore_preferences_error_invalid_file_version_message">The selected file was created by a newer version of Cipherdit and cannot be opened.</string>
 
 	<string name="restore_preferences_error_version_warning_title">Warning</string>
-	<string name="restore_preferences_error_version_warning_message">The selected file was created by a newer version of RedReader. Restoring the preferences from this file may lead to crashes and instability.</string>
-	
+	<string name="restore_preferences_error_version_warning_message">The selected file was created by a newer version of Cipherdit. Restoring the preferences from this file may lead to crashes and instability.</string>
+
 	<string name="button_continue_anyway">Continue anyway</string>
 	<string name="button_cancel">Cancel</string>
 	<string name="button_restore_preferences">Restore</string>
@@ -1628,7 +1628,7 @@
 
 	<!-- 2022-01-09 -->
 	<string name="error_title_report_previous_crash">Report previous crash</string>
-	<string name="error_message_report_previous_crash">RedReader crashed the last time it was run. Would you like to report this?</string>
+	<string name="error_message_report_previous_crash">Cipherdit crashed the last time it was run. Would you like to report this?</string>
 
 	<!-- 2021-01-21 -->
 	<string name="error_locked_reply">This has been locked and can no longer be replied to.</string>
