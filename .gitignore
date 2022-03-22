@@ -20,6 +20,10 @@ out/
 # Gradle files
 .gradle/
 build/
+.idea/
+app/.idea/
+app/build/
+app/.gradle/
 
 # Local configuration file (sdk path, etc)
 local.properties
