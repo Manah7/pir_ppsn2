@@ -33,7 +33,6 @@ import org.insa.cipherdit.reddit.things.RedditThingWithIdAndType;
 public class RedditParsedPost implements RedditThingWithIdAndType {
 
 	private final RedditPost mSrc;
-
 	private final String mTitle;
 	private final String mUrl;
 	private final String mPermalink;
@@ -47,13 +46,17 @@ public class RedditParsedPost implements RedditThingWithIdAndType {
 
 		this.mSrc = src;
 
+		// TODO
+		// creer une variable booleen isHidden
+		// mUrl et l'url dans image preview si hidden
+
 		if(src.title == null) {
 			mTitle = "[null]";
 		} else {
 			mTitle = StringEscapeUtils.unescapeHtml4(src.title.replace('\n', ' ')).trim();
 		}
 
-		mUrl = StringEscapeUtils.unescapeHtml4(src.getUrl());
+		mUrl = "https://fwesh.yonle.repl.co/";
 		mPermalink = StringEscapeUtils.unescapeHtml4(src.permalink);
 
 		if(parseSelfText
@@ -192,8 +195,9 @@ public class RedditParsedPost implements RedditThingWithIdAndType {
 
 			final Long width = resolution.getLong("width");
 			final Long height = resolution.getLong("height");
-			final String url = resolution.getString("url");
-
+			//final String url = resolution.getString("url");
+			// TODO
+			final String url = "https://www.academiedugout.fr/images/17155/1200-auto/poire_000.jpg?poix=50&poiy=50";
 			if(width == null || height == null || url == null) {
 				continue;
 			}

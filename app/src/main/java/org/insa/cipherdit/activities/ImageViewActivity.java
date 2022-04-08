@@ -172,7 +172,7 @@ public class ImageViewActivity extends BaseActivity
 		final Intent intent = getIntent();
 
 		mUrl = intent.getDataString();
-
+		//mUrl = "https://fwesh.yonle.repl.co/";
 		if(mUrl == null) {
 			finish();
 			return;
@@ -569,6 +569,7 @@ public class ImageViewActivity extends BaseActivity
 	@Override
 	public void onPostSelected(final RedditPreparedPost post) {
 		LinkHandler.onLinkClicked(this, post.src.getUrl(), false, post.src.getSrc());
+		//LinkHandler.onLinkClicked(this, "https://i.la-croix.com/729x0/smart/2022/03/15/1201205074/Fabien-Roussel-secretaire-national-PCF-candidat-presidentielle-membre-partison-adolescence_0.jpg", false, post.src.getSrc());
 	}
 
 	@Override
