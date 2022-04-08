@@ -27,6 +27,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.StringRes;
@@ -83,7 +84,6 @@ public final class SettingsFragment extends PreferenceFragmentCompat {
 	public void onCreatePreferences(
 			final Bundle savedInstanceState,
 			final String rootKey) {
-
 		final Context context = getActivity();
 
 		final String panel = requireArguments().getString("panel");
@@ -468,9 +468,22 @@ public final class SettingsFragment extends PreferenceFragmentCompat {
 		}
 
 		{
+
+			final CheckBoxPreference test_pref = findPreference(getString(R.string.pref_hidden_test_key));
+			if (test_pref != null) {
+			test_pref.setOnPreferenceChangeListener((pref, value) -> {
+				System.out.println("coucou");
+				System.out.println(((CheckBoxPreference)pref).isChecked());
+				return true;
+			});
+			}
+		}
+
+		{
 			final CheckBoxPreference hideOnScrollPref
 					= findPreference(getString(
 							R.string.pref_appearance_hide_toolbar_on_scroll_key));
+
 
 			final Preference toolbarAtBottomPref = findPreference(getString(
 					R.string.pref_appearance_bottom_toolbar_key));

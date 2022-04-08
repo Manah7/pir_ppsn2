@@ -1654,5 +1654,9 @@
 	<string name="pref_behaviour_block_screenshots_key">pref_behaviour_block_screenshots</string>
 	<string name="pref_behaviour_block_screenshots_title">Block screenshots</string>
 	<string name="pref_behaviour_block_screenshots_summary">Prevent screenshots from being taken, and hide the app content in the recents menu</string>
+    <string name="pref_hidden_test_key">pref_hidden_test</string>
+    <string name="pref_hidden_test_title">test</string>
+    <string name="prefs_category_hidden">Hidden</string>
+    <string name="prefs_category_hidden_key">prefs_category_hidden</string>
 
 </resources>

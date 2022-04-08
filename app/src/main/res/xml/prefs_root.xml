@@ -19,10 +19,16 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Preference
-        android:key="@string/prefs_category_appearance_key"
-        android:title="@string/prefs_category_appearance"/>
+	<Preference
+		android:key="@string/prefs_category_hidden_key"
+		android:title="@string/prefs_category_hidden" />
 
+	<Preference
+		android:id="@+id/preference"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:key="@string/prefs_category_appearance_key"
+		android:title="@string/prefs_category_appearance" />
 	<Preference
 			android:key="@string/prefs_category_fonts_key"
 			android:title="@string/prefs_category_fonts"/>
