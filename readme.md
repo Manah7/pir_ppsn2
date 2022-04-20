@@ -35,7 +35,14 @@ Pour pouvoir développer sur *Android*, nous utiliserons le langage **Java** ave
 ## Développement
 Notre application est basée sur [RedReader](https://github.com/QuantumBadger/RedReader) (GNU GPL 3).
 
-## Travaux avec les autres PIR
+### Interface avec les autres PIR
+#### PIR Stegano
+L'interface avec le PIR Stegano est implémentée dans le package `org.insa.cipherdit.postGenerator`.
+#### PIR PPSN 1
+L'interface avec le PIR PPSN1 est impémentée dans le package `org.insa.cipherdit.databaseCheck`.
+
+
+## Travaux avec les autres PIR (archive - à enlever)
 ### (Stégano) Templates et exemples de posts
 Nous fournirons un script permettant de parser un subreddit, sortie au format CSV.
 
