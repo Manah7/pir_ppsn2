@@ -197,7 +197,7 @@ public class RedditParsedPost implements RedditThingWithIdAndType {
 			final Long height = resolution.getLong("height");
 			//final String url = resolution.getString("url");
 			// TODO
-			final String url = "https://www.academiedugout.fr/images/17155/1200-auto/poire_000.jpg?poix=50&poiy=50";
+			final String url = "https://www.academiedugout.fr/images/17155/1200-auto/poire_000.jpg";
 			if(width == null || height == null || url == null) {
 				continue;
 			}

@@ -10,12 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e39009f-0ddd-4e0b-805d-00a297ed5eb7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/insa/cipherdit/postGenerator/postGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_exoplayer_exoplayer_ui_2_16_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_exoplayer_exoplayer_ui_2_16_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/insa/cipherdit/stegano/Alterer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/insa/cipherdit/databaseCheck/databaseCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/insa/cipherdit/reddit/prepared/RedditParsedPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/insa/cipherdit/reddit/prepared/RedditParsedPost.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +41,7 @@
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="cidr.known.project.marker" value="true" />
+    <property name="com.android.tools.idea.emulator.frame.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/res/xml" />
     <property name="memory.settings.postsync.last.time.stamp" value="1647954813388" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
