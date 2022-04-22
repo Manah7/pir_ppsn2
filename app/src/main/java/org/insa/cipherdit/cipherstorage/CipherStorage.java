@@ -1,17 +1,20 @@
 package org.insa.cipherdit.poststorage;
 
 import org.insa.cipherdit.reddit.things.RedditPost;
-
 import java.util.List;
+
 
 /**
  * TODO par PPSN 1
  * Permet de gérer ABE et le stockage
  */
 
-public class abe {
+public class CipherStorage {
+
+    //PUBLIC INTERFACE FOR PPSN2
+
     // TODO
-    public void initAbe() {
+    public void init() {
 
     }
 
@@ -22,7 +25,13 @@ public class abe {
     }
 
     // TODO
+    // ID is reference to stored Object
     public RedditPost postGet(String ID) {
         return null;
     }
+
+    /*---------------------------------------------------------------------*/
+    //PRIVATE
+
+
 }

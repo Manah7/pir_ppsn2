@@ -11,6 +11,7 @@ buildscript {
 repositories {
 	mavenCentral()
 	google()
+	maven { url 'https://jitpack.io' }
 }
 
 apply plugin: 'com.android.application'
@@ -42,6 +43,8 @@ dependencies {
 	androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 	androidTestImplementation 'androidx.test:rules:1.4.0'
 	androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.4.0'
+
+	implementation 'com.github.junwei-wang:cpabe:master-SNAPSHOT'
 }
 
 android {
