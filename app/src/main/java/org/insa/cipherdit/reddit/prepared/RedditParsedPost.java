@@ -24,6 +24,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import org.insa.cipherdit.common.Optional;
 import org.insa.cipherdit.jsonwrap.JsonArray;
 import org.insa.cipherdit.jsonwrap.JsonObject;
+import org.insa.cipherdit.postGenerator.postGetter;
 import org.insa.cipherdit.reddit.PostCommentSort;
 import org.insa.cipherdit.reddit.prepared.bodytext.BodyElement;
 import org.insa.cipherdit.reddit.prepared.html.HtmlReader;
@@ -44,11 +45,7 @@ public class RedditParsedPost implements RedditThingWithIdAndType {
 			final RedditPost src,
 			final boolean parseSelfText) {
 
-		this.mSrc = src;
-
-		// TODO
-		// creer une variable booleen isHidden
-		// mUrl et l'url dans image preview si hidden
+		this.mSrc = postGetter.getPostToRender(src);
 
 		if(src.title == null) {
 			mTitle = "[null]";
@@ -56,7 +53,8 @@ public class RedditParsedPost implements RedditThingWithIdAndType {
 			mTitle = StringEscapeUtils.unescapeHtml4(src.title.replace('\n', ' ')).trim();
 		}
 
-		mUrl = "https://fwesh.yonle.repl.co/";
+		//you can change the image here
+		mUrl = StringEscapeUtils.unescapeHtml4(src.getUrl());
 		mPermalink = StringEscapeUtils.unescapeHtml4(src.permalink);
 
 		if(parseSelfText
@@ -195,9 +193,9 @@ public class RedditParsedPost implements RedditThingWithIdAndType {
 
 			final Long width = resolution.getLong("width");
 			final Long height = resolution.getLong("height");
-			//final String url = resolution.getString("url");
-			// TODO
-			final String url = "https://www.academiedugout.fr/images/17155/1200-auto/poire_000.jpg";
+			//you can change the image preview here
+			final String url = resolution.getString("url");
+
 			if(width == null || height == null || url == null) {
 				continue;
 			}

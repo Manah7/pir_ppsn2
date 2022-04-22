@@ -14,7 +14,8 @@ public class postGenerator {
     }
 
     // TODO par PIR Stega
-    public int hastPost(RedditPost post) {
+    public int hashPost(RedditPost post) {
         return 0;
     }
+
 }
