@@ -10,15 +10,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e39009f-0ddd-4e0b-805d-00a297ed5eb7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_exoplayer_exoplayer_ui_2_16_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_exoplayer_exoplayer_ui_2_16_1_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/insa/cipherdit/reddit/prepared/RedditParsedPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/insa/cipherdit/reddit/prepared/RedditParsedPost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/insa/cipherdit/cipherstorage/Cipher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/insa/cipherdit/cipherstorage/Cipher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/insa/cipherdit/cipherstorage/CipherStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/insa/cipherdit/cipherstorage/CipherStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/insa/cipherdit/cipherstorage/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/insa/cipherdit/cipherstorage/Storage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/home/manah/.android/avd/Pixel_4a_API_31.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -42,8 +46,11 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="com.android.tools.idea.emulator.frame.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/res/xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/build.gradle" />
     <property name="memory.settings.postsync.last.time.stamp" value="1647954813388" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="ReaderModeSettings">

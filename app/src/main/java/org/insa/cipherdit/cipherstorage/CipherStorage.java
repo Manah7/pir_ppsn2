@@ -1,4 +1,4 @@
-package org.insa.cipherdit.poststorage;
+package org.insa.cipherdit.cipherstorage;
 
 import org.insa.cipherdit.reddit.things.RedditPost;
 import java.util.List;

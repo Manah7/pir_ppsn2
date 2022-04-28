@@ -3,6 +3,7 @@
     <ANNOTATIONS>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/b5af00bb6ddce59fdd37a2f5e9b3e108/transformed/jetified-exoplayer-ui-2.16.1/annotations.zip!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/d5e879c4c26c0e68e1bd110fac1de538/transformed/jetified-exoplayer-ui-2.16.1/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/60b82a2d9de5b2e8a0074f7f5a864c08/transformed/jetified-exoplayer-ui-2.16.1/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/b5af00bb6ddce59fdd37a2f5e9b3e108/transformed/jetified-exoplayer-ui-2.16.1/jars/classes.jar!/" />
@@ -11,6 +12,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d5e879c4c26c0e68e1bd110fac1de538/transformed/jetified-exoplayer-ui-2.16.1/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/d5e879c4c26c0e68e1bd110fac1de538/transformed/jetified-exoplayer-ui-2.16.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d5e879c4c26c0e68e1bd110fac1de538/transformed/jetified-exoplayer-ui-2.16.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/60b82a2d9de5b2e8a0074f7f5a864c08/transformed/jetified-exoplayer-ui-2.16.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/60b82a2d9de5b2e8a0074f7f5a864c08/transformed/jetified-exoplayer-ui-2.16.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/60b82a2d9de5b2e8a0074f7f5a864c08/transformed/jetified-exoplayer-ui-2.16.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
