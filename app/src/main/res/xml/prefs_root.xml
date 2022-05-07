@@ -18,6 +18,9 @@
   -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	<Preference
+		android:key="@string/prefs_category_abetags_key"
+		android:title="@string/prefs_category_abetags" />
 
 	<Preference
 		android:key="@string/prefs_category_hidden_key"
