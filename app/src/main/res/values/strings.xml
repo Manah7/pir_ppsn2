@@ -1662,6 +1662,9 @@
 
     <string name="prefs_category_abetags">abetags</string>
     <string name="prefs_category_abetags_key">prefs_category_abetags</string>
+
     <string name="abetags_file">.abetags</string>
+
+    <string name="pref_abetagslist_key">pref_abetagslist</string>
 
 </resources>

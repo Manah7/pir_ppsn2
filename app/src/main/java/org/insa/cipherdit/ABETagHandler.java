@@ -27,19 +27,21 @@ public class ABETagHandler {
     static ArrayList<CheckBoxPreference> tags = new ArrayList<CheckBoxPreference>();
     static  String fileName;
     static File fileDir;
-    PreferenceCategory category;
+    static boolean todo = true;
+    //PreferenceCategory category;
     Context context;
 
     public ABETagHandler(PreferenceCategory categoryPar, Context context) {
-        category = categoryPar;
+        //category = categoryPar;
         fileName = context.getString(R.string.abetags_file);
         fileDir = context.getFilesDir();
+        importTagsFromFile(categoryPar);
 
-        importTagsFromFile();
+
 
     }
 
-    public void importTagsFromFile(){
+    public void importTagsFromFile(PreferenceCategory category){
         String text = "";
             StringBuilder textbuild = new StringBuilder();
 
@@ -78,7 +80,7 @@ public class ABETagHandler {
                 //TODO handle error
             }
         }
-
+        tags = new ArrayList<CheckBoxPreference>();
         JSONObject json = null;
         JSONArray jsonArray = null;
         try {
@@ -122,7 +124,6 @@ public class ABETagHandler {
             e.printStackTrace();
         }
     }
-    //TODO problème avec la catégorie qui est nulle : à régler
     public static void  addNewTag(String tagName, PreferenceCategory category, boolean status) {
         CheckBoxPreference checkbox = new CheckBoxPreference(category.getContext());
         checkbox.setKey("pref_chk_"+tagName);

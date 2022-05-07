@@ -36,9 +36,12 @@ import androidx.preference.CheckBoxPreference;
 import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
+import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.PreferenceScreen;
+
+import org.insa.cipherdit.ABETagHandler;
 import org.insa.cipherdit.BuildConfig;
 import org.insa.cipherdit.R;
 import org.insa.cipherdit.activities.BaseActivity;
@@ -68,6 +71,8 @@ import java.util.Objects;
 public final class SettingsFragment extends PreferenceFragmentCompat {
 
 	@StringRes private int mTitle;
+
+	private ABETagHandler tagHandler;
 
 	@Override
 	public void onResume() {
@@ -105,6 +110,11 @@ public final class SettingsFragment extends PreferenceFragmentCompat {
 
 		addPreferencesFromResource(resource);
 
+		//TODO obligé d'ajouter ça pour qu'il détecte la catégorie mais cela fait apparaitre en double...
+		//addPreferencesFromResource(R.xml.prefs_abetags);
+
+
+		//addPreferencesFromResource(R.xml.)
 		final int[] listPrefsToUpdate = {
 				R.string.pref_appearance_twopane_key,
 				R.string.pref_behaviour_self_post_tap_actions_key,
@@ -172,7 +182,7 @@ public final class SettingsFragment extends PreferenceFragmentCompat {
 				R.string.pref_images_inline_image_previews_key,
 				R.string.pref_images_high_res_thumbnails_key,
 				R.string.pref_accessibility_min_comment_height_key,
-				R.string.pref_appearance_android_status_key
+				R.string.pref_appearance_android_status_key,
 		};
 
 		final int[] editTextPrefsToUpdate = {
@@ -225,7 +235,7 @@ public final class SettingsFragment extends PreferenceFragmentCompat {
 			});
 		}
 
-
+		//getFragmentManager().executePendingTransactions();
 		final Preference versionPref =
 				findPreference(getString(R.string.pref_about_version_key));
 		final Preference changelogPref =
@@ -238,8 +248,12 @@ public final class SettingsFragment extends PreferenceFragmentCompat {
 				findPreference(getString(R.string.pref_item_backup_preferences_key));
 		final Preference restorePreferencesPref =
 				findPreference(getString(R.string.pref_item_restore_preferences_key));
-
-
+		//final PreferenceScreen abetagsPreferencesPref = findPreference(getString(R.string.prefs_category_abetags_key));
+		//abetagsPreferencesPref.addPreferencesFromResource(R.xml.prefs_abetags);
+		final EditTextPreference addtag_pref = findPreference("pref_addabetagtext");
+		System.out.println("ABETAGTEXT : "+addtag_pref);
+		final PreferenceCategory category = findPreference(getString(R.string.pref_abetagslist_key));
+		System.out.println("CATEGORY : "+category);
 		final PackageInfo pInfo;
 
 		try {
@@ -471,11 +485,25 @@ public final class SettingsFragment extends PreferenceFragmentCompat {
 
 			final CheckBoxPreference test_pref = findPreference(getString(R.string.pref_hidden_test_key));
 			if (test_pref != null) {
-			test_pref.setOnPreferenceChangeListener((pref, value) -> {
-				System.out.println("coucou");
-				System.out.println(((CheckBoxPreference)pref).isChecked());
-				return true;
-			});
+				test_pref.setOnPreferenceChangeListener((pref, value) -> {
+					System.out.println("coucou");
+					System.out.println(((CheckBoxPreference) pref).isChecked());
+					return true;
+				});
+			}
+		}
+		{
+
+
+			if (addtag_pref != null && category != null) {
+				System.out.println("cat : "+category);
+				tagHandler = new ABETagHandler(category, this.getContext());
+				addtag_pref.setOnPreferenceChangeListener((pref, value) -> {
+					System.out.println("Value : "+value);
+					ABETagHandler.addNewTag((String)value,category,true);
+
+					return true;
+				});
 			}
 		}
 
