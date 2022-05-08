@@ -19,6 +19,13 @@ import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.util.List;
 import co.junwei.cpabe.Cpabe;
+import java.util.ArrayList;
+
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.GCMParameterSpec;
+import java.util.Base64;
 
 
 /**
@@ -33,6 +40,9 @@ public class Cipher {
         cpabe = new Cpabe() ;
         // Setting up public parameter and master key
         cpabe.setup(pubfile,mskfile) ;
+        aesE = new EncryptAES();
+        aesD = new DecryptAES();
+
     }
 
 
@@ -56,10 +66,11 @@ public class Cipher {
          */
         private String ABE_EncKey ;
         private String AES_EncFile ;
+
         @RequiresApi(api = Build.VERSION_CODES.O)
         public void CipherCouple(String file_path, String policy) throws Exception {
             /*
-            Generate Key from File hash
+            Generate Key from File hash (De Ludo, la cle ne vient pas du Hash, AES en cree une)
             Encrypt Key with CPABE using attributes
             Encrypt File with AES
              */
@@ -77,6 +88,11 @@ public class Cipher {
             cpabe.enc(pubfile,policy,encpath.toString(),ABE_EncKey);
 
             //AES
+            aesE.init();
+            AES_EncFile = aesE.encryptAES(file_bytes);
+            String keyAES = aesE.exportKey(); 
+            //Possible probleme avec le fait que AES requiert une cle + une matric IV j'ai mis les deux methode init et export necessaire si l'une ou l'autre ne marche pas
+            //mais si on a besoin des deux il faudra modif des truc.
 
         }
 
@@ -89,8 +105,109 @@ public class Cipher {
         }
     }
 
+    /**
+ * Possible KEY_SIZE values are 128, 192 and 256
+ * Possible T_LEN values are 128, 120, 112, 104 and 96
+ */
+
+    public class EncryptAES {
+        
+        //AES Setup
+        private SecretKey key;
+        private int KEY_SIZE = 128;
+        private int T_LEN = 128;
+        private byte[] IV;
+
+        public void init() throws Exception {
+            KeyGenerator generator = KeyGenerator.getInstance("AES");
+            generator.init(KEY_SIZE);
+            key = generator.generateKey();
+        }
+
+        public String encryptAES(byte[] fileInBytes) throws Exception {
+            Cipher encryptionCipher = Cipher.getInstance("AES/GCM/NoPadding");
+            encryptionCipher.init(Cipher.ENCRYPT_MODE, key);
+            IV = encryptionCipher.getIV();
+            byte[] encryptedBytes = encryptionCipher.doFinal(messageInBytes);
+            return encode(encryptedBytes);
+        }
+
+        public String exportKey(){
+            return encode(key.getEncoded());
+        }
+
+        public String exportKeys(){
+            ArrayList<String> keys =  new ArrayList<>();  
+            keys.add(encode(IV));
+            keys.add(encode(key.getEncoded()));
+            return keys;
+        }
+
+        private String encode(byte[] data) {
+            return Base64.getEncoder().encodeToString(data);
+        }
+
+        private byte[] decode(String data) {
+            return Base64.getDecoder().decode(data);
+        }
+    }
+
+    public class DecryptAES {
+        
+        //AES Setup
+        private SecretKey key;
+        private int KEY_SIZE = 128;
+        private int T_LEN = 128;
+        private byte[] IV;
+
+        public void init(String secretKey){
+            key = new SecretKeySpec(decode(secretKey),"AES");
+            encryptionCipher.init(Cipher.ENCRYPT_MODE, key);
+            IV = encryptionCipher.getIV();
+        }   
+
+        public void init2(String secretKey, String IV){
+            key = new SecretKeySpec(decode(secretKey),"AES");
+            this.IV = decode(IV);
+        } 
+
+        private byte[] decryptAES(String encryptedMessage, SecretKey key) throws Exception {
+            byte[] messageInBytes = decode(encryptedMessage);
+            Cipher decryptionCipher = Cipher.getInstance("AES/GCM/NoPadding");
+            GCMParameterSpec spec = new GCMParameterSpec(T_LEN, IV);
+            decryptionCipher.init(Cipher.DECRYPT_MODE, key, spec);
+            byte[] decryptedBytes = decryptionCipher.doFinal(messageInBytes);
+            return decryptedBytes;
+        }
+
+        private String encode(byte[] data) {
+            return Base64.getEncoder().encodeToString(data);
+        }
+
+        private byte[] decode(String data) {
+            return Base64.getDecoder().decode(data);
+        }
+    }
+
+    /* public static void main(String[] args) {
+            try {
+                byte[] messageInBytes = "test".getBytes();
+                aesE.init();
+                String AES_EncFile = aesE.encryptAES(messageInBytes);
+                String keyAES = aesE.exportKey();
+                aesD.init(keyAES);
+                byte[] message = aesD.decryptAES(AES_EncFile, keyAES);
+                System.err.println("Decrypted Message : " + String(message));
+            } catch (Exception ignored) {
+            }
+        } */
+
     /*---------------------------------------------------------------------*/
     //PRIVATE
+
+    //AES related
+    static private EncryptAES aesE;
+    static private DecryptAES aesD;
 
     //CPABE related
     static private Cpabe cpabe ;
