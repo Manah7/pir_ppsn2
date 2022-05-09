@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -34,6 +35,9 @@ import java.util.Base64;
  */
 
 public class Cipher {
+	
+	private String dir_post_files = "./post_files";
+	
 
     //PUBLIC INTERFACE FOR CipherStorage
     public void setupCipher() throws Exception{
@@ -46,17 +50,50 @@ public class Cipher {
     }
 
 
-    public Object Cipher(RedditPost post, List<String> attributes){
-        return null ;
+    public File Cipher(RedditPost post, List<String> attributes){
+    	
+    	
+    	// Transform the RedditPost into a file
+    	// Create the file
+    	//String file_name = null; //pb avec le nom des fichiers
+    	//File post_file = new  File.createTempFile(this.dir_post_files, file_name);
+    	 // Open an output stream
+    	//ObjectOutputStream oos =  new ObjectOutputStream(new FileOutputStream(post_file)) ;
+    	 // sérialization de l'objet
+    	//ObjectOutputStream oos =  new ObjectOutputStream(post) ;
+    	//ByteArrayOutputStream()
+    	oos.writeObject(post) ;
+    	oos.close();
+    	// now the file contains the serialized post
+    	
+    	
+    	//encryption and storage
+    	
+    	
+        return encrypted_file;
     }
 
     //
-    public boolean CheckAccess(Object ciphered){
+    public boolean CheckAccess(String ciphered_file_path){
         return false ;
     }
 
-    public RedditPost Decipher(Object ciphered){
-        return null ;
+    public RedditPost Decipher(String ciphered_file_path){
+    	
+    	// decrypter
+    	
+    	
+    	
+    	
+    	
+    	//File decyphered_file =  new File(deciphered_file_path) ; // à remplir 
+
+    	 // ouverture d'un flux sur un fichier
+    	ObjectInputStream ois =  new ObjectInputStream(new FileInputStream(decyphered_file)) ;
+    	 // désérialization de l'objet
+    	RedditPost result = (RedditPost)ois.readObject() ;
+    	
+        return result ;
     }
 
     public class CipherCouple {
