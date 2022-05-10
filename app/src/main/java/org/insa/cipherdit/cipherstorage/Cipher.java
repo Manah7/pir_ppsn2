@@ -59,7 +59,7 @@ public class Cipher {
     	//File post_file = new  File.createTempFile(this.dir_post_files, file_name);
     	 // Open an output stream
     	//ObjectOutputStream oos =  new ObjectOutputStream(new FileOutputStream(post_file)) ;
-    	 // sérialization de l'objet
+    	 // sï¿½rialization de l'objet
     	//ObjectOutputStream oos =  new ObjectOutputStream(post) ;
     	//ByteArrayOutputStream()
     	oos.writeObject(post) ;
@@ -86,11 +86,11 @@ public class Cipher {
     	
     	
     	
-    	//File decyphered_file =  new File(deciphered_file_path) ; // à remplir 
+    	//File decyphered_file =  new File(deciphered_file_path) ; // ï¿½ remplir 
 
     	 // ouverture d'un flux sur un fichier
     	ObjectInputStream ois =  new ObjectInputStream(new FileInputStream(decyphered_file)) ;
-    	 // désérialization de l'objet
+    	 // dï¿½sï¿½rialization de l'objet
     	RedditPost result = (RedditPost)ois.readObject() ;
     	
         return result ;
