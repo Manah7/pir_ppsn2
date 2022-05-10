@@ -19,13 +19,13 @@ import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.util.List;
 import co.junwei.cpabe.Cpabe;
-import java.util.ArrayList;
+/* import java.util.ArrayList;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
-import java.util.Base64;
+import java.util.Base64; */
 
 
 /**
@@ -40,8 +40,8 @@ public class Cipher {
         cpabe = new Cpabe() ;
         // Setting up public parameter and master key
         cpabe.setup(pubfile,mskfile) ;
-        aesE = new EncryptAES();
-        aesD = new DecryptAES();
+        /* aesE = new EncryptAES();
+        aesD = new DecryptAES(); */
 
     }
 
@@ -88,9 +88,9 @@ public class Cipher {
             cpabe.enc(pubfile,policy,encpath.toString(),ABE_EncKey);
 
             //AES
-            aesE.init();
+            /* aesE.init();
             AES_EncFile = aesE.encryptAES(file_bytes);
-            String keyAES = aesE.exportKey(); 
+            String keyAES = aesE.exportKey();  */
             //Possible probleme avec le fait que AES requiert une cle + une matric IV j'ai mis les deux methode init et export necessaire si l'une ou l'autre ne marche pas
             //mais si on a besoin des deux il faudra modif des truc.
 
@@ -110,7 +110,7 @@ public class Cipher {
  * Possible T_LEN values are 128, 120, 112, 104 and 96
  */
 
-    public class EncryptAES {
+    /* public class EncryptAES {
         
         //AES Setup
         private SecretKey key;
@@ -188,7 +188,7 @@ public class Cipher {
             return Base64.getDecoder().decode(data);
         }
     }
-
+ */
     /* public static void main(String[] args) {
             try {
                 byte[] messageInBytes = "test".getBytes();
@@ -206,8 +206,8 @@ public class Cipher {
     //PRIVATE
 
     //AES related
-    static private EncryptAES aesE;
-    static private DecryptAES aesD;
+    /* static private EncryptAES aesE;
+    static private DecryptAES aesD; */
 
     //CPABE related
     static private Cpabe cpabe ;
