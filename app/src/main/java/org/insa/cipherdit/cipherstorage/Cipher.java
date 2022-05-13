@@ -6,7 +6,7 @@ import androidx.annotation.RequiresApi;
 
 import com.google.common.primitives.Bytes;
 
-//import org.insa.cipherdit.reddit.things.RedditPost;
+import org.insa.cipherdit.reddit.things.RedditPost;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -35,8 +35,6 @@ import java.util.Base64;
 
 public class Cipher {
 
-    private String dir_post_files = "./post_files";
-
     // PUBLIC INTERFACE FOR CipherStorage
     public void setupCipher() throws Exception {
         cpabe = new Cpabe();
@@ -50,7 +48,7 @@ public class Cipher {
         aesD = new DecryptAES();
     }
 
-    public File Cipher(String post, List<String> attributes) {
+    public boolean Cipher(RedditPost post, List<String> attributes) {
 
         // Transform the RedditPost into a file
         // Create the file
@@ -69,11 +67,31 @@ public class Cipher {
         // encryption and storage
 
         // return encrypted_file;
-        return null;
+
+        try{
+            //Serialize --> file_bytes
+
+            CipherCouple CC = new CipherCouple(file_bytes, ListToPolicyString(attributes));
+
+            //Upload CipherCouple.AES_EncFile CipherCouple.ABE_EncKey
+
+            return true;
+        } catch(E Exception){
+            return false;
+        }
+        
+
+        
     }
 
     //
-    public boolean CheckAccess(String ciphered_file_path) {
+    public boolean CheckAccess(File ABE_Enckey, String ABE_Key) {
+
+        Path encpathkey = Files.createFile(Paths.get(dir + "ABE_Key"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(encpathkey.toFile()));
+        writer.write(ABE_Key);
+        cpabe.dec(pubfile,ABE_Enckey,encpathkey.toString(),new File.createTempFile(this.dir_post_files, file_name););
+
         return false;
     }
 
@@ -81,12 +99,12 @@ public class Cipher {
 
         // decrypter
 
-        // File decyphered_file = new File(deciphered_file_path) ; // � remplir
+        // File decyphered_file = new File(deciphered_file_path) ; // a remplir
 
         // ouverture d'un flux sur un fichier
         // ObjectInputStream ois = new ObjectInputStream(new
         // FileInputStream(decyphered_file)) ;
-        // d�s�rialization de l'objet
+        // deserialization de l'objet
         // RedditPost result = (RedditPost)ois.readObject() ;
 
         // return result;
@@ -103,7 +121,7 @@ public class Cipher {
         private String AES_EncFile;
 
         @RequiresApi(api = Build.VERSION_CODES.O)
-        public void CipherCouple(String file_path, String policy) throws Exception {
+        public void CipherCouple(byte[] file_bytes, String policy) throws Exception {
             /*
              * Generate Key from File hash (De Ludo, la cle ne vient pas du Hash, AES en
              * cree une)
@@ -111,7 +129,7 @@ public class Cipher {
              * Encrypt File with AES
              */
             // Generate Key from File hash + Encrypt Key with CPABE
-            byte[] file_bytes = GetBytesFromPath(file_path);
+            //byte[] file_bytes = GetBytesFromPath(file_path);
             // Creating the MessageDisgest object
 
             // Generating private key
@@ -121,7 +139,7 @@ public class Cipher {
             AES_EncFile = aesE.encryptAES(file_bytes);
             String keyAES = aesE.exportKey();
 
-            Path encpath = Files.createFile(Paths.get(dir + "enckey"));
+            Path encpath = Files.createFile(Paths.get(dir + "ABE_EncKey"));
             BufferedWriter writer = new BufferedWriter(new FileWriter(encpath.toFile()));
             writer.write("clabonnecle" + keyAES);
 
@@ -255,6 +273,7 @@ public class Cipher {
     static private String pubfile = dir + "/pub_key";
     static private String mskfile = dir + "/master_key";
     static private String prvfile = dir + "/prv_key";
+    static private String dir_post_files = dir + "/post_files";
 
     private String ATTRIBUTES = "";
 
@@ -263,6 +282,17 @@ public class Cipher {
         for (String at : str_list) {
             R += " " + at;
         }
+        return R;
+    }
+
+    private String ListToPolicyString(List<String> str_list) {
+        int count = 0
+        String R = "";
+        for (String at : str_list) {
+            count++;
+            R += " " + at;
+        }
+        R+= " " + Integer.toString(count) + "of" + Integer.toString(count);
         return R;
     }
 
