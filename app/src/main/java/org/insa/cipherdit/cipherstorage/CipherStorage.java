@@ -14,10 +14,9 @@ import java.io.ObjectOutputStream;
  */
 
 public class CipherStorage {
-
+    //PUBLIC INTERFACE FOR PPSN2
 
     private Cipher cipher;
-    //PUBLIC INTERFACE FOR PPSN2
 
     public void init() {
         cipher = new Cipher();
@@ -25,23 +24,26 @@ public class CipherStorage {
     }
 
     // TODO Fonction appelée lors d'un envoi de posts
-    // Note : la casse des mots "id" et "ID" est respectée
+    // Note : la casse des mots "id" viens de stegano et "ID" est respectée
     public void postSend (RedditPost post, List<String> attributes, String id) {
         byte[] postinbyte = RedditPostToByteArray(post);
 
         //Encrypt
+        boolean success = cipher.Encrypt(postinbyte, attributes);
 
+        if (!success){
+            //throw erreur ?
+        }
 
-        //store
     }
 
-    // TODO
     // ID is reference to stored Object
     public RedditPost postGet(String ID) {
+        //Recup the ABEKEy file and pseudo
 
-        byte[] postinbyte = null; // what is deciphered
-        RedditPost post =  ByteArrayToRedditPost(postinbyte)
-        return null;
+        //byte[] postinbyte = c.Decrypt(ABE_key, pseudo, etc);
+        //RedditPost post =  ByteArrayToRedditPost(postinbyte)
+        return post;
     }
 
     /*---------------------------------------------------------------------*/
