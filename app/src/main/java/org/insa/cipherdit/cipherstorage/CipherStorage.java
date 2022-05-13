@@ -2,7 +2,11 @@ package org.insa.cipherdit.cipherstorage;
 
 import org.insa.cipherdit.reddit.things.RedditPost;
 import java.util.List;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  * TODO par PPSN 1
@@ -11,18 +15,23 @@ import java.io.ByteArrayOutputStream;
 
 public class CipherStorage {
 
+
+    private Cipher cipher;
     //PUBLIC INTERFACE FOR PPSN2
 
-    // TODO
     public void init() {
-
+        cipher = new Cipher();
+        setupCipher();
     }
 
     // TODO Fonction appelée lors d'un envoi de posts
     // Note : la casse des mots "id" et "ID" est respectée
     public void postSend (RedditPost post, List<String> attributes, String id) {
         byte[] postinbyte = RedditPostToByteArray(post);
+
         //Encrypt
+
+
         //store
     }
 
