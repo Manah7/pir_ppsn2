@@ -9,6 +9,7 @@ import com.google.common.primitives.Bytes;
 import org.insa.cipherdit.reddit.things.RedditPost;
 
 import java.io.BufferedWriter;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
@@ -41,35 +42,22 @@ public class Cipher {
         // Setting up public parameter and master key
         cpabe.setup(pubfile, mskfile);
 
+        //ADDING A CHECK
+
     }
 
-    public void setupAES() throws Exception {
-        aesE = new EncryptAES();
-        aesD = new DecryptAES();
+    public String generatePrivateKey(List<String> attributes){
+
+        cpabe.dec(pubfile,prvfile,mskfile,ListToAttributeString(attributes));
+        BufferedReader br = new BufferedReader(new FileReader(prvfile));
+        return br.readLine();
+
     }
 
-    public boolean Cipher(RedditPost post, List<String> attributes) {
+    public boolean Encrypt(byte[] file_bytes, List<String> attributes) {
 
-        // Transform the RedditPost into a file
-        // Create the file
-        // String file_name = null; //pb avec le nom des fichiers
-        // File post_file = new File.createTempFile(this.dir_post_files, file_name);
-        // Open an output stream
-        // ObjectOutputStream oos = new ObjectOutputStream(new
-        // FileOutputStream(post_file)) ;
-        // serialization de l'objet
-        // ObjectOutputStream oos = new ObjectOutputStream(post) ;
-        // ByteArrayOutputStream()
-        // oos.writeObject(post) ;
-        // oos.close();
-        // now the file contains the serialized post
-
-        // encryption and storage
-
-        // return encrypted_file;
-
+        counter++;
         try{
-            //Serialize --> file_bytes
 
             CipherCouple CC = new CipherCouple(file_bytes, ListToPolicyString(attributes));
 
@@ -79,37 +67,46 @@ public class Cipher {
         } catch(E Exception){
             return false;
         }
-        
-
-        
     }
 
-    //
-    public boolean CheckAccess(File ABE_Enckey, String ABE_Key) {
+    public byte[] Decrypt(File ABE_EncKey, String Pseudo) {
 
+        counter++;
+        try{
+
+            String ABE_Key = ""; //GET KEY FUNCTION PPSN2
+
+            String AES_Key = CheckAccess(ABE_Enckey, ABE_Key);
+
+            if (AES_Key == null){return null;} 
+
+            //DL FILE
+
+            aesD.init(AES_Key.substring(11));
+
+            return aesD.decryptAES(encryptedMessage);; 
+        } catch(e Exception){
+            return null;
+        }
+
+    }
+
+    private String CheckAccess(File ABE_Enckey, String ABE_Key) {
+        String file = "AES_Key" + Integer.toString(counter); 
         Path encpathkey = Files.createFile(Paths.get(dir + "ABE_Key"));
         BufferedWriter writer = new BufferedWriter(new FileWriter(encpathkey.toFile()));
         writer.write(ABE_Key);
-        cpabe.dec(pubfile,ABE_Enckey,encpathkey.toString(),new File.createTempFile(this.dir_post_files, file_name););
+        cpabe.dec(pubfile,ABE_Enckey.getAbsolutePath().toString(),encpathkey.toString(),new File.createTempFile(dir_post_files,file));
 
-        return false;
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String AES_Key = br.readLine();
+
+        if(!AES_Key.startsWith("clabonnecle")){AES_Key = null;}
+
+        return AES_Key;
     }
 
-    public RedditPost Decipher(String ciphered_file_path) {
-
-        // decrypter
-
-        // File decyphered_file = new File(deciphered_file_path) ; // a remplir
-
-        // ouverture d'un flux sur un fichier
-        // ObjectInputStream ois = new ObjectInputStream(new
-        // FileInputStream(decyphered_file)) ;
-        // deserialization de l'objet
-        // RedditPost result = (RedditPost)ois.readObject() ;
-
-        // return result;
-        return null;
-    }
+    
 
     public class CipherCouple {
         /*
@@ -117,38 +114,26 @@ public class Cipher {
          * CPABE
          * & le fichier encrypte avec AES
          */
-        private String ABE_EncKey;
+        private String ABE_EncKey = dir + "/EncKey";
         private String AES_EncFile;
 
         @RequiresApi(api = Build.VERSION_CODES.O)
-        public void CipherCouple(byte[] file_bytes, String policy) throws Exception {
-            /*
-             * Generate Key from File hash (De Ludo, la cle ne vient pas du Hash, AES en
-             * cree une)
-             * Encrypt Key with CPABE using attributes
-             * Encrypt File with AES
-             */
-            // Generate Key from File hash + Encrypt Key with CPABE
-            //byte[] file_bytes = GetBytesFromPath(file_path);
-            // Creating the MessageDisgest object
-
-            // Generating private key
+        public CipherCouple(byte[] file_bytes, String policy) throws Exception {
 
             // AES
             aesE.init();
-            AES_EncFile = aesE.encryptAES(file_bytes);
+            String AESString = aesE.encryptAES(file_bytes);
             String keyAES = aesE.exportKey();
 
-            Path encpath = Files.createFile(Paths.get(dir + "ABE_EncKey"));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(encpath.toFile()));
+            Path encpathfile = Files.createFile(Paths.get(dir + "/EncFile"));
+            BufferedWriter writer1 = new BufferedWriter(new FileWriter(encpathfile.toFile()));
+            writer.write(AESString);
+
+            Path encpathkey = Files.createFile(Paths.get(dir + "/NotCryptedKey"));
+            BufferedWriter writer2 = new BufferedWriter(new FileWriter(encpathkey.toFile()));
             writer.write("clabonnecle" + keyAES);
-
-            // Possible probleme avec le fait que AES requiert une cle + une matric IV j'ai
-            // mis les deux methode init et export necessaire si l'une ou l'autre ne marche
-            // pas
-            // mais si on a besoin des deux il faudra modif des truc.
-
-            // cpabe.keygen(pubfile,prvfile,mskfile,ATTRIBUTES); wrong spot
+            
+            //ABE
             cpabe.enc(pubfile, policy, encpath.toString(), ABE_EncKey);
 
         }
@@ -172,7 +157,7 @@ public class Cipher {
 
         // AES Setup
         private SecretKey key;
-        private int KEY_SIZE = 128;
+        private int KEY_SIZE = 256;
         private int T_LEN = 128;
         private byte[] IV;
 
@@ -229,7 +214,7 @@ public class Cipher {
             this.IV = decode(IV);
         }
 
-        private byte[] decryptAES(String encryptedMessage, SecretKey key) throws Exception {
+        private byte[] decryptAES(String encryptedMessage) throws Exception {
             byte[] messageInBytes = decode(encryptedMessage);
             Cipher decryptionCipher = Cipher.getInstance("AES/GCM/NoPadding");
             GCMParameterSpec spec = new GCMParameterSpec(T_LEN, IV);
@@ -264,8 +249,8 @@ public class Cipher {
     // PRIVATE
 
     // AES related
-    static private EncryptAES aesE;
-    static private DecryptAES aesD;
+    static private EncryptAES aesE = new EncryptAES();;
+    static private DecryptAES aesD = new DecryptAES();;
 
     // CPABE related
     static private Cpabe cpabe;
@@ -274,6 +259,7 @@ public class Cipher {
     static private String mskfile = dir + "/master_key";
     static private String prvfile = dir + "/prv_key";
     static private String dir_post_files = dir + "/post_files";
+    static private int counter = 0;
 
     private String ATTRIBUTES = "";
 
@@ -286,7 +272,7 @@ public class Cipher {
     }
 
     private String ListToPolicyString(List<String> str_list) {
-        int count = 0
+        int count = 0;
         String R = "";
         for (String at : str_list) {
             count++;
@@ -296,7 +282,7 @@ public class Cipher {
         return R;
     }
 
-    private byte[] GetBytesFromPath(String path) throws IOException {
+    /* private byte[] GetBytesFromPath(String path) throws IOException {
         File file = new File(path);
         byte[] bytes = new byte[(int) file.length()];
         FileInputStream fis = null;
@@ -310,6 +296,6 @@ public class Cipher {
             }
         }
         return bytes;
-    }
+    } */
 
 }
