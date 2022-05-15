@@ -40,7 +40,7 @@ public class CipherStorage {
     // ID is reference to stored Object
     public RedditPost postGet(String id_steg, String cpabe_private_key) {
         
-        //Recup the ABEKEy file cpabe_key
+        //Recup the ABEKEy file cpabe_key and aes_file_encrypted
 
         //byte[] postinbyte = c.Decrypt(cpabe_key_private_key, cpabe_key);
         //RedditPost post =  ByteArrayToRedditPost(postinbyte)
