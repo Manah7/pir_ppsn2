@@ -69,12 +69,12 @@ public class Cipher {
         }
     }
 
-    public byte[] Decrypt(File ABE_EncKey, String Pseudo) {
+    public byte[] Decrypt(File ABE_EncKey, String ABE_Key) {
 
         counter++;
         try{
 
-            String ABE_Key = ""; //GET KEY FUNCTION PPSN2
+            //the abe_key is now an argument given by ppsn2
 
             String AES_Key = CheckAccess(ABE_Enckey, ABE_Key);
 
