@@ -115,7 +115,7 @@ public class Cipher {
          * & le fichier encrypte avec AES
          */
         private String ABE_EncKey = dir + "/EncKey";
-        private String AES_EncFile;
+        private String AES_EncFile = dir + "/EncFile";
 
         @RequiresApi(api = Build.VERSION_CODES.O)
         public CipherCouple(byte[] file_bytes, String policy) throws Exception {
