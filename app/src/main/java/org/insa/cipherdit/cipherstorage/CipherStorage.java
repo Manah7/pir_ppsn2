@@ -25,7 +25,7 @@ public class CipherStorage {
 
     // TODO Fonction appelée lors d'un envoi de posts
     // Note : la casse des mots "id" viens de stegano et "ID" est respectée
-    public void postSend (RedditPost post, List<String> attributes, String id) {
+    public void postSend (RedditPost post, List<String> attributes, String id_steg) {
         byte[] postinbyte = RedditPostToByteArray(post);
 
         //Encrypt
@@ -38,10 +38,11 @@ public class CipherStorage {
     }
 
     // ID is reference to stored Object
-    public RedditPost postGet(String ID) {
-        //Recup the ABEKEy file and pseudo
+    public RedditPost postGet(String id_steg, String cpabe_private_key) {
+        
+        //Recup the ABEKEy file cpabe_key
 
-        //byte[] postinbyte = c.Decrypt(ABE_key, pseudo, etc);
+        //byte[] postinbyte = c.Decrypt(cpabe_key_private_key, cpabe_key);
         //RedditPost post =  ByteArrayToRedditPost(postinbyte)
         return post;
     }
