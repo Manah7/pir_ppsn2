@@ -7,6 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import org.insa.cipherdit.cipherstorage.Cipher_Ppsn;
 
 /**
  * TODO par PPSN 1
@@ -15,12 +16,20 @@ import java.io.ObjectOutputStream;
 
 public class CipherStorage {
     //PUBLIC INTERFACE FOR PPSN2
+    private String accesstoken;
 
-    private Cipher cipher;
+    DbxRequestConfig requestConfig = DbxRequestConfig.newBuilder("ppsn/v1").build();
+    DbxClientV2 Client = new DbxClientV2(requestConfig, accesstoken);
+
+    private Cipher_Ppsn cipherPpsn;
 
     public void init() {
-        cipher = new Cipher();
-        setupCipher();
+        cipherPpsn = new Cipher_Ppsn();
+        try {
+            cipherPpsn.setupCipher();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // TODO Fonction appelée lors d'un envoi de posts
@@ -29,7 +38,7 @@ public class CipherStorage {
         byte[] postinbyte = RedditPostToByteArray(post);
 
         //Encrypt
-        boolean success = cipher.Encrypt(postinbyte, attributes);
+        boolean success = cipherPpsn.Encrypt(postinbyte, attributes);
 
         if (!success){
             //throw erreur ?
@@ -39,7 +48,7 @@ public class CipherStorage {
 
     // ID is reference to stored Object
     public RedditPost postGet(String id_steg, String cpabe_private_key) {
-        
+        RedditPost post = null;
         //Recup the ABEKEy file cpabe_key and aes_file_encrypted
 
         //byte[] postinbyte = c.Decrypt(cpabe_key_private_key, cpabe_key);

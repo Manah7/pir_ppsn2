@@ -4,26 +4,18 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import com.google.common.primitives.Bytes;
-
-import org.insa.cipherdit.reddit.things.RedditPost;
-
 import java.io.BufferedWriter;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.MessageDigest;
 import java.util.List;
 import co.junwei.cpabe.Cpabe;
 import java.util.ArrayList;
 
-import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
@@ -34,7 +26,7 @@ import java.util.Base64;
  * Permet de gérer l'encryption
  */
 
-public class Cipher {
+public class Cipher_Ppsn {
 
     // PUBLIC INTERFACE FOR CipherStorage
     public void setupCipher() throws Exception {
@@ -54,6 +46,7 @@ public class Cipher {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public boolean Encrypt(byte[] file_bytes, List<String> attributes) {
 
         counter++;
@@ -64,12 +57,12 @@ public class Cipher {
             //Upload CipherCouple.AES_EncFile CipherCouple.ABE_EncKey
 
             return true;
-        } catch(E Exception){
+        } catch(java.lang.Exception Exception){
             return false;
         }
     }
 
-    public byte[] Decrypt(File ABE_EncKey, String ABE_Key) {
+    public byte[] Decrypt(File ABE_Enckey, String ABE_Key) {
 
         counter++;
         try{
@@ -83,20 +76,22 @@ public class Cipher {
             //DL FILE
 
             aesD.init(AES_Key.substring(11));
-
-            return aesD.decryptAES(encryptedMessage);; 
-        } catch(e Exception){
+            String encryptedMessage = "cheh";
+            return aesD.decryptAES(encryptedMessage);
+        } catch(java.lang.Exception Exception){
             return null;
         }
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private String CheckAccess(File ABE_Enckey, String ABE_Key) {
         String file = "AES_Key" + Integer.toString(counter); 
         Path encpathkey = Files.createFile(Paths.get(dir + "ABE_Key"));
         BufferedWriter writer = new BufferedWriter(new FileWriter(encpathkey.toFile()));
         writer.write(ABE_Key);
-        cpabe.dec(pubfile,ABE_Enckey.getAbsolutePath().toString(),encpathkey.toString(),new File.createTempFile(dir_post_files,file));
+        Path temp = Files.createTempFile(dir_post_files,file);
+        cpabe.dec(pubfile,ABE_Enckey.getAbsolutePath().toString(),encpathkey.toString(), temp.toString());
 
         BufferedReader br = new BufferedReader(new FileReader(file));
         String AES_Key = br.readLine();
@@ -127,14 +122,15 @@ public class Cipher {
 
             Path encpathfile = Files.createFile(Paths.get(dir + "/EncFile"));
             BufferedWriter writer1 = new BufferedWriter(new FileWriter(encpathfile.toFile()));
-            writer.write(AESString);
+            writer1.write(AESString);
 
             Path encpathkey = Files.createFile(Paths.get(dir + "/NotCryptedKey"));
             BufferedWriter writer2 = new BufferedWriter(new FileWriter(encpathkey.toFile()));
-            writer.write("clabonnecle" + keyAES);
+            writer2.write("clabonnecle" + keyAES);
             
             //ABE
-            cpabe.enc(pubfile, policy, encpath.toString(), ABE_EncKey);
+            // qu'est ce que c'
+            cpabe.enc(pubfile, policy, encpathfile.toString(), ABE_EncKey);
 
         }
 
@@ -168,10 +164,10 @@ public class Cipher {
         }
 
         public String encryptAES(byte[] fileInBytes) throws Exception {
-            Cipher encryptionCipher = Cipher.getInstance("AES/GCM/NoPadding");
-            encryptionCipher.init(Cipher.ENCRYPT_MODE, key);
-            IV = encryptionCipher.getIV();
-            byte[] encryptedBytes = encryptionCipher.doFinal(messageInBytes);
+            Cipher_Ppsn encryptionCipherPpsn = Cipher_Ppsn.getInstance("AES/GCM/NoPadding");
+            encryptionCipherPpsn.init(Cipher_Ppsn.ENCRYPT_MODE, key);
+            IV = encryptionCipherPpsn.getIV();
+            byte[] encryptedBytes = encryptionCipherPpsn.doFinal(messageInBytes);
             return encode(encryptedBytes);
         }
 
@@ -205,7 +201,7 @@ public class Cipher {
 
         public void init(String secretKey) {
             key = new SecretKeySpec(decode(secretKey), "AES");
-            encryptionCipher.init(Cipher.ENCRYPT_MODE, key);
+            encryptionCipher.init(Cipher_Ppsn.ENCRYPT_MODE, key);
             IV = encryptionCipher.getIV();
         }
 
@@ -216,10 +212,10 @@ public class Cipher {
 
         private byte[] decryptAES(String encryptedMessage) throws Exception {
             byte[] messageInBytes = decode(encryptedMessage);
-            Cipher decryptionCipher = Cipher.getInstance("AES/GCM/NoPadding");
+            Cipher_Ppsn decryptionCipherPpsn = Cipher_Ppsn.getInstance("AES/GCM/NoPadding");
             GCMParameterSpec spec = new GCMParameterSpec(T_LEN, IV);
-            decryptionCipher.init(Cipher.DECRYPT_MODE, key, spec);
-            byte[] decryptedBytes = decryptionCipher.doFinal(messageInBytes);
+            decryptionCipherPpsn.init(Cipher_Ppsn.DECRYPT_MODE, key, spec);
+            byte[] decryptedBytes = decryptionCipherPpsn.doFinal(messageInBytes);
             return decryptedBytes;
         }
 
